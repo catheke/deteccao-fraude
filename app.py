@@ -163,17 +163,23 @@ with tab4:
     with col1:
         st.subheader("Matriz de Confusão")
         try:
-            matriz_img = Image.open('model/matriz_confusao.png')
-            st.image(matriz_img, caption="Matriz de Confusão: [TN=56862, FP=2], [FN=23, TP=75]", use_column_width=True)
-        except:
-            st.error("Erro ao carregar 'matriz_confusao.png' da pasta 'model'. Verifique o arquivo.")
+            if os.path.exists('model/matriz_confusao.png'):
+                matriz_img = Image.open('model/matriz_confusao.png')
+                st.image(matriz_img, caption="Matriz de Confusão: [TN=56862, FP=2], [FN=23, TP=75]", use_container_width=True)
+            else:
+                st.error("Arquivo 'matriz_confusao.png' não encontrado na pasta 'model'. Verifique o repositório.")
+        except Exception as e:
+            st.error(f"Erro ao carregar 'matriz_confusao.png': {str(e)}")
     with col2:
         st.subheader("Curva ROC")
         try:
-            roc_img = Image.open('model/curva_roc.png')
-            st.image(roc_img, caption="Curva ROC com AUC", use_column_width=True)
-        except:
-            st.error("Erro ao carregar 'curva_roc.png' da pasta 'model'. Verifique o arquivo.")
+            if os.path.exists('model/curva_roc.png'):
+                roc_img = Image.open('model/curva_roc.png')
+                st.image(roc_img, caption="Curva ROC com AUC", use_container_width=True)
+            else:
+                st.error("Arquivo 'curva_roc.png' não encontrado na pasta 'model'. Verifique o repositório.")
+        except Exception as e:
+            st.error(f"Erro ao carregar 'curva_roc.png': {str(e)}")
 
 # Rodapé
 st.markdown("""
